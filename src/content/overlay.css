@@ -1,0 +1,278 @@
+@import url('../lib/theme-vars.css');
+
+:host,
+.parrot-root {
+  all: initial;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.parrot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  cursor: crosshair;
+  background: var(--overlay-scrim);
+  user-select: none;
+}
+
+.parrot-selection {
+  position: absolute;
+  border: 2px solid var(--selection-border);
+  background: var(--selection-fill);
+  box-shadow: 0 0 0 9999px var(--overlay-scrim);
+  pointer-events: none;
+}
+
+.parrot-hint {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 3px solid var(--accent);
+  box-sizing: border-box;
+  background: var(--hint-bg);
+  color: var(--text-on-dark);
+  font: 500 13px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  pointer-events: none;
+}
+
+.parrot-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--overlay-backdrop);
+}
+
+.parrot-modal {
+  width: min(640px, 100%);
+  max-height: min(70vh, 560px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  box-shadow: var(--modal-shadow);
+}
+
+.parrot-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.parrot-modal-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.parrot-action-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background: var(--border-subtle);
+  color: var(--accent);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.parrot-action-icon:hover:not(.copied) {
+  background: var(--accent);
+  color: #fff;
+}
+
+.parrot-action-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.parrot-action-icon.copied {
+  background: var(--accent);
+  color: #fff;
+}
+
+.parrot-modal-title {
+  margin: 0;
+  font: 600 16px/1.3 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--accent);
+}
+
+.parrot-modal-subtitle {
+  margin: 0;
+  color: var(--text-muted);
+  font: 400 12px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.parrot-result-text {
+  width: 100%;
+  min-height: 180px;
+  max-height: 360px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-subtle);
+  color: var(--text);
+  font: 400 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.parrot-result-text::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.parrot-result-text::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 999px;
+}
+
+.parrot-result-text::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.parrot-result-text::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+.parrot-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.parrot-button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font: 600 13px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  cursor: pointer;
+}
+
+.parrot-button-primary {
+  border: 1px solid var(--accent);
+  background: var(--button-bg);
+  color: var(--accent);
+}
+
+.parrot-button-primary:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.parrot-button-secondary {
+  background: var(--border-subtle);
+  color: var(--text);
+}
+
+.parrot-button-secondary:hover {
+  background: var(--border);
+}
+
+.parrot-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.parrot-button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font: 600 13px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  cursor: pointer;
+}
+
+.parrot-button-primary {
+  border: 1px solid var(--accent);
+  background: var(--button-bg);
+  color: var(--accent);
+}
+
+.parrot-button-primary:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.parrot-button-secondary {
+  background: var(--border-subtle);
+  color: var(--text);
+}
+
+.parrot-button-secondary:hover {
+  background: var(--border);
+}
+
+.parrot-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--toast-bg);
+  color: var(--text-on-dark);
+  font: 500 13px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.24);
+}
+
+.parrot-toast-success {
+  top: 16px;
+  bottom: auto;
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.parrot-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay-scrim-heavy);
+}
+
+.parrot-loading-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 220px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--loading-card-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--loading-card-border);
+  box-shadow: var(--loading-shadow);
+}
+
+.parrot-loading-label {
+  margin: 0;
+  font: 500 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color: var(--loading-label-color);
+}

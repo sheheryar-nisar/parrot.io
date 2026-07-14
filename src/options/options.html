@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Settings - Parrot.io</title>
+
+    <link rel="stylesheet" href="options.css" />
+    <link rel="stylesheet" href="../lib/language-settings.css" />
+
+  </head>
+
+  <body>
+
+    <main class="options">
+
+      <header>
+
+        <h1>Settings</h1>
+
+        <p>Configure languages and copy behavior.</p>
+
+      </header>
+
+
+
+      <form id="settings-form">
+
+        <section class="field">
+          <label for="theme">Theme</label>
+          <div class="custom-select" data-select-id="theme">
+            <button type="button" id="theme" class="custom-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="custom-select-label"></span>
+            </button>
+            <ul class="custom-select-menu" role="listbox" hidden></ul>
+            <input type="hidden" name="theme" value="system" />
+          </div>
+        </section>
+
+
+
+        <div id="language-settings-mount"></div>
+
+
+
+        <section class="field checkbox-field">
+
+          <label class="checkbox-row" for="auto-copy">
+
+            <input id="auto-copy" name="autoCopy" type="checkbox"/>
+
+            <span>Auto Copy</span>
+
+          </label>
+
+          <p class="help">When on, text is copied to the clipboard automatically.</p>
+
+        </section>
+
+        <div class="actions">
+          <button type="button" id="reset-button" class="secondary-button">Reset</button>
+          <button type="submit" id="save-button" class="primary-button">Update</button>
+        </div>
+
+      </form>
+
+    </main>
+
+
+
+    <script type="module" src="options.js"></script>
+
+  </body>
+
+</html>
+

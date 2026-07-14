@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parrot.io</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <header class="popup-header">
+        <h1>Parrot.io</h1>
+        <p>Select an area and extract text with OCR.</p>
+      </header>
+
+      <button id="select-area" class="primary-button" type="button">
+        <span>Select Area</span>
+        <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 8V4h4"></path>
+          <path d="M16 4h4v4"></path>
+          <path d="M20 16v4h-4"></path>
+          <path d="M8 20H4v-4"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </button>
+
+      <p class="shortcut-hint">
+        Shortcut: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd>
+      </p>
+
+      <a id="open-settings" class="settings-link" href="#">Settings...</a>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

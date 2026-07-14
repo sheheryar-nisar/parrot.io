@@ -1,0 +1,70 @@
+{
+  "manifest_version": 3,
+  "name": "Parrot.io",
+  "version": "1.0.0",
+  "description": "Select any area on a page, OCR it, and copy the extracted text.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "offscreen",
+    "clipboardWrite",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    },
+    "default_title": "Parrot.io - Select area to OCR"
+  },
+  "options_page": "src/options/options.html",
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "commands": {
+    "start-selection": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "windows": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
+      },
+      "description": "Start area selection for OCR"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["src/lib/extract-dom-text.js", "src/content/overlay.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; worker-src 'self' 'wasm-unsafe-eval';"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/content/overlay.css",
+        "src/lib/theme-vars.css",
+        "src/lib/language-settings.css",
+        "src/lib/language-settings-panel.js",
+        "src/lib/custom-select.js",
+        "src/lib/settings.js",
+        "src/lib/lang-utils.js",
+        "src/lib/tesseract/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

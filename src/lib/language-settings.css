@@ -1,0 +1,180 @@
+@import url('./theme-vars.css');
+
+.language-settings-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.language-settings-panel .field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.language-settings-panel .label,
+.language-settings-panel label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.language-settings-panel .custom-select {
+  position: relative;
+  max-width: 360px;
+}
+
+.language-settings-panel .custom-select-trigger {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 44px 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--surface);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  outline: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2316a34a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px 16px;
+}
+
+.language-settings-panel .custom-select-trigger:focus,
+.language-settings-panel .custom-select-trigger:focus-visible,
+.language-settings-panel .custom-select.open .custom-select-trigger {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.language-settings-panel .custom-select-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--text) 12%, transparent);
+  max-height: min(240px, 40vh);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.language-settings-panel .custom-select-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.language-settings-panel .custom-select-menu::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 999px;
+}
+
+.language-settings-panel .custom-select-menu::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.language-settings-panel .custom-select-menu::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+.language-settings-panel .custom-select-option {
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.language-settings-panel .custom-select-option:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.language-settings-panel .custom-select-option.selected {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.language-settings-panel .custom-select-option.selected:hover {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.language-settings-panel .custom-select.disabled .custom-select-trigger {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.language-settings-panel input[type='checkbox'] {
+  accent-color: var(--accent);
+}
+
+.language-settings-panel .checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.language-settings-panel .help {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.language-settings-panel .help.error {
+  color: var(--status);
+}
+
+.language-settings-panel .language-settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.language-settings-panel .primary-button {
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: var(--button-bg);
+  color: var(--accent);
+  font: 600 14px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.language-settings-panel .primary-button:hover {
+  background: color-mix(in srgb, var(--accent) 10%, var(--button-bg));
+  border-color: var(--accent-hover);
+  color: var(--accent-hover);
+}
+
+.language-settings-panel .secondary-button {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: var(--border-subtle);
+  color: var(--text);
+  font: 600 14px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.language-settings-panel .secondary-button:hover {
+  background: var(--border);
+}

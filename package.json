@@ -1,0 +1,19 @@
+{
+  "name": "learningsource",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup:tesseract": "powershell -ExecutionPolicy Bypass -File scripts/setup-tesseract.ps1",
+    "generate:icons": "node scripts/generate-icons.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tesseract.js": "^5.1.1"
+  },
+  "devDependencies": {
+    "sharp": "^0.32.6"
+  }
+}
