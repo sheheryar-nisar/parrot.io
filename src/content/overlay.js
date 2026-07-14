@@ -589,29 +589,59 @@
     return rect;
   }
 
+  function waitForNextPaint() {
+    return new Promise((resolve) => {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(resolve);
+      });
+    });
+  }
+
   async function finishSelection(rect) {
     const prevHostVisibility = host?.style.visibility ?? '';
     const prevCursor = document.body.style.cursor;
+    let captureDoneListener = null;
+    let captureUiRestored = false;
 
     if (host) {
       host.style.visibility = 'hidden';
     }
     document.body.style.cursor = 'wait';
 
-    let loadingTimeoutId = window.setTimeout(() => {
-      if (host) {
-        host.style.visibility = '';
+    const showLoadingAfterCapture = () => {
+      if (captureUiRestored || !host) {
+        return;
       }
+      host.style.visibility = '';
       showLoading();
-    }, 300);
+    };
 
     const restoreCaptureUi = () => {
-      window.clearTimeout(loadingTimeoutId);
+      if (captureDoneListener) {
+        chrome.runtime.onMessage.removeListener(captureDoneListener);
+        captureDoneListener = null;
+      }
       document.body.style.cursor = prevCursor || '';
-      if (host) {
+      if (host && !captureUiRestored) {
         host.style.visibility = prevHostVisibility || '';
       }
+      captureUiRestored = true;
     };
+
+    captureDoneListener = (message) => {
+      if (message?.type !== 'PARROT_CAPTURE_DONE') {
+        return false;
+      }
+      showLoadingAfterCapture();
+      if (captureDoneListener) {
+        chrome.runtime.onMessage.removeListener(captureDoneListener);
+        captureDoneListener = null;
+      }
+      return false;
+    };
+    chrome.runtime.onMessage.addListener(captureDoneListener);
+
+    await waitForNextPaint();
 
     plog('selection complete, sending PARROT_SELECTION_COMPLETE', rect);
 

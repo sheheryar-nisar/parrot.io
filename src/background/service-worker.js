@@ -782,6 +782,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
         const dataUrl = await captureTabScreenshot(tab);
 
+        if (typeof tab.id === 'number') {
+          try {
+            chrome.tabs.sendMessage(tab.id, { type: 'PARROT_CAPTURE_DONE' }, () => {
+              void chrome.runtime.lastError;
+            });
+          } catch {
+            // Ignore notify failures; OCR should still proceed.
+          }
+        }
+
         const settings = await getSettings();
 
 
