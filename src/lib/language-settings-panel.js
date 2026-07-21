@@ -27,6 +27,7 @@ export async function mountLanguageSettingsPanel({
   closeRoot = document,
   showSaveButton = true,
   onSaved,
+  onChange,
 }) {
   container.innerHTML = '';
 
@@ -123,6 +124,11 @@ export async function mountLanguageSettingsPanel({
     options: LANGUAGE_OPTIONS,
     value: 'eng',
     closeRoot,
+    onChange: () => {
+      if (onChange) {
+        onChange();
+      }
+    },
   });
 
   function showLanguageError(message) {
@@ -173,7 +179,12 @@ export async function mountLanguageSettingsPanel({
     return true;
   }
 
-  autoDetectCheckbox.addEventListener('change', syncLanguageFieldState);
+  autoDetectCheckbox.addEventListener('change', () => {
+    syncLanguageFieldState();
+    if (onChange) {
+      onChange();
+    }
+  });
 
   const settings = await getSettings();
   await applyFromSettings(settings);

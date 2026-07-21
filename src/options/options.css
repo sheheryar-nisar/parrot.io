@@ -166,6 +166,10 @@ input[type="checkbox"] {
   gap: 12px;
 }
 
+.actions > button {
+  flex: 0 0 96px;
+}
+
 .primary-button {
   border: 1px solid var(--accent);
   border-radius: 10px;
@@ -182,14 +186,16 @@ input[type="checkbox"] {
   color: var(--accent-hover);
 }
 
-.primary-button.updated {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: #ffffff;
+.primary-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
-.primary-button.updated:hover {
-  background: var(--accent-hover);
+.primary-button:disabled:hover {
+  background: var(--button-bg);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .secondary-button {
@@ -206,12 +212,14 @@ input[type="checkbox"] {
   background: var(--border);
 }
 
-.secondary-button.updated {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: #ffffff;
+.secondary-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
-.secondary-button.updated:hover {
-  background: var(--accent-hover);
+.secondary-button:disabled:hover {
+  background: var(--border-subtle);
 }
+
+

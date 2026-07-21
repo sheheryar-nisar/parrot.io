@@ -796,6 +796,23 @@
 
   window.__parrotStartSelection = handleStartSelection;
 
+  if (!window.__parrotShortcutBound) {
+    window.__parrotShortcutBound = true;
+    const isMac = navigator.platform.toLowerCase().includes('mac');
+    document.addEventListener(
+      'keydown',
+      (event) => {
+        const modifier = isMac ? event.metaKey : event.ctrlKey;
+        const isX = event.code === 'KeyX' || event.key?.toLowerCase() === 'x';
+        if (modifier && event.shiftKey && !event.altKey && isX) {
+          event.preventDefault();
+          window.__parrotStartSelection?.();
+        }
+      },
+      true
+    );
+  }
+
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message?.type === 'PARROT_START_SELECTION') {
       sendResponse(handleStartSelection());
